@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=public/index.js",
+    "postinstall": "npx prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@mohit-kumar/common-zod-all": "^1.0.0",
+    "@prisma/client": "^5.18.0",
+    "@types/express": "^4.17.21",
+    "cors": "^2.8.5",
+    "expres": "^0.0.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.18.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  }
+}
