@@ -137,9 +137,13 @@ app.put('/api/v1/blog', authenticate, async (req: Request, res: Response) => {
 
 app.delete('/api/v1/blog/:id', authenticate, async (req: Request, res: Response) => {
   const id = Number(req.params.id);
+  const userId = (req as any).userId;
   try {
     await prisma.post.delete({
-      where: { id },
+      where: { 
+        id:id,
+        authorId:userId
+       },
     });
     return res.status(200).json({ message: 'Post deleted successfully' });
   } catch (error) {
