@@ -191,7 +191,6 @@ app.get('/api/v1/all-blog', authenticate, async (req: Request, res: Response) =>
         author: {
           select: {
             name: true,
-            id:true
           }
         }
       }
