@@ -55,15 +55,15 @@ app.post('/api/v1/signup', async (req: Request, res: Response) => {
 
 app.post('/api/v1/signin', async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const result = signinInput.safeParse({ email, password });
+ const result = signinInput.safeParse({ email, password });
   if (!result.success) {
     return res.status(400).json({ error: 'Invalid input'});
   }
   try {
     const user = await prisma.user.findUnique({
       where: {
-        email,
-        password,
+        email: email,
+        password: password,
       },
     });
     if (!user) {
@@ -72,6 +72,7 @@ app.post('/api/v1/signin', async (req: Request, res: Response) => {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     res.status(200).json({ jwt: token, name:user.name , id:user.id});
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
